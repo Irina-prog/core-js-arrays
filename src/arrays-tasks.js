@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 /* ********************************************************************************************
  *                                                                                            *
  * Please read the following tutorial before implementing tasks:                               *
@@ -20,8 +21,11 @@
  *    getIntervalArray(0, 100) => [ 0, 1, 2, ..., 100 ]
  *    getIntervalArray(3, 3) => [ 3 ]
  */
-function getIntervalArray(/* start, end */) {
-  throw new Error('Not implemented');
+function getIntervalArray(start, end) {
+  // throw new Error('Not implemented');
+  const lengthOfNewArray = end - start + 1;
+  const newArr = Array(lengthOfNewArray).fill(start);
+  return Array.from(newArr, (item, index) => item + index);
 }
 
 /**
@@ -37,8 +41,26 @@ function getIntervalArray(/* start, end */) {
  *    sumArrays([10, 20, 30], [5, 10, 15]) => [15, 30, 45]
  *    sumArrays([-1, 0, 1], [1, 2, 3, 4]) => [0, 2, 4, 4]
  */
-function sumArrays(/* arr1, arr2 */) {
-  throw new Error('Not implemented');
+function sumArrays(arr1, arr2) {
+  // throw new Error('Not implemented');
+  let arrBigger;
+  let arrSmaller;
+  if (arr1.length < arr2.length) {
+    arrBigger = arr2;
+    arrSmaller = arr1;
+  } else {
+    arrBigger = arr1;
+    arrSmaller = arr2;
+  }
+
+  return arrBigger.reduce((acc, item, index) => {
+    if (arrSmaller[index]) {
+      acc.push(item + arrSmaller[index]);
+    } else {
+      acc.push(item);
+    }
+    return acc;
+  }, []);
 }
 
 /**
